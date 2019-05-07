@@ -1,2 +1,6 @@
 
 \.metadata/\.lock
+
+\.metadata/\.plugins/org\.eclipse\.epp\.logging\.aeri\.ide/org\.eclipse\.epp\.logging\.aeri\.ide\.server/http-cache/write\.lock
+
+\.metadata/\.plugins/org\.eclipse\.epp\.logging\.aeri\.ide/org\.eclipse\.epp\.logging\.aeri\.ide\.server/local-history/write\.lock
