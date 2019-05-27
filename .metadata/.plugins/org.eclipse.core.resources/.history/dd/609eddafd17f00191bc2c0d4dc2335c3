@@ -1,0 +1,11 @@
+package samplepacakage;
+
+public class DataProvider {
+
+	public static void main(String[] args)
+	{
+		
+
+	}
+
+}

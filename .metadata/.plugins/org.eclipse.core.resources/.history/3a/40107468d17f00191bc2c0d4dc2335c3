@@ -1,0 +1,48 @@
+package samplepackage;
+
+import org.openqa.selenium.By;
+public class ConceptOfDataProvider
+{
+	@Test(dataProvider="getdata")
+	public void login(String username,String password)
+	{
+		System.setProperty("webdriver.chrome.driver", "D:\\automation testing\\Drivers\\chromedriver.exe");
+		
+		ChromeDriver dr =new ChromeDriver();
+		dr.manage().window().maximize();
+		
+		dr.get("http://www.newtours.demoaut.com/");
+		
+		dr.findElement(By.xpath("//input[@name='userName']")).sendKeys(username);
+		dr.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+		dr.findElement(By.xpath("//input[@name='login']")).click();
+		
+       int count =dr.findElements(By.xpath("//b[contains(text(),'Passengers')]")).size();
+       
+       Assert.assertEquals(count, 1);
+      
+		
+	}
+	
+	@DataProvider
+	public String[][] getdata()
+	{
+		
+			String[][] data=new String[3][2];
+			
+			//row1
+			data[0][0]="mercury";
+			data[0][1]="mercury";
+			//row2
+			data[1][0]="poojachavan@gmail.com";
+			data[1][1]="Pooja@123";
+				
+			//row3
+			data[2][0]="Shital";
+			data[2][1]="Shital123";
+			
+			return data;
+	}
+		
+
+}

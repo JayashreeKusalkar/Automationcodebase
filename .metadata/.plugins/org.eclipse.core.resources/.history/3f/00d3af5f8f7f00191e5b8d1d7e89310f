@@ -1,0 +1,16 @@
+package samplepackage;
+
+import utility.Xls_Reader;
+
+public class ReadData {
+
+	public static void main(String[] args) 
+	{
+		Xls_Reader x1=new Xls_Reader("\\src\\test\\java\\testData\\TestData.xls");
+		
+		System.out.println(System.getProperty("user.dir"));
+		
+
+	}
+
+}
