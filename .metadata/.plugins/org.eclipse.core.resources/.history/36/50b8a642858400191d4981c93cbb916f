@@ -1,0 +1,72 @@
+package samplepacakage;
+
+
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import utility.Xls_Reader;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+public class ConceptOfDataProvider
+{
+	/*@Test(dataProvider="getdata")
+	public void login(String username,String password)
+	{
+		System.setProperty("webdriver.chrome.driver", "D:\\automation testing\\Drivers\\chromedriver.exe");
+		
+		ChromeDriver dr =new ChromeDriver();
+		dr.manage().window().maximize();
+		
+		dr.get("http://www.newtours.demoaut.com/");
+		
+		dr.findElement(By.xpath("//input[@name='userName']")).sendKeys(username);
+		dr.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
+		dr.findElement(By.xpath("//input[@name='login']")).click();
+		
+       int count =dr.findElements(By.xpath("//b[contains(text(),'Passengers')]")).size();
+       
+       Assert.assertEquals(count, 1);
+      
+		
+	}*/
+	
+	@DataProvider
+	public String[][] getdata() throws IOException
+	{
+		Xls_Reader x1=new Xls_Reader (System.getProperty("user.dir")+"\\src\\test\\java\\testData\\TestData.xls");
+		
+		System.out.println(System.getProperty("user.dir"));
+		
+		int rows= x1.getrowcount("sheet1");
+		int cols=x1.getColumncount("sheet1");
+	
+			String[][] data=new String[rows-1][cols];
+			
+			for(int r=2; r<rows; r++)
+			{
+				for(int c=1; c<cols; c++)
+				{
+				data[r-2][c-1]=x1.getCellData("sheet1", r, c); 
+				}
+			}
+			
+			return data;
+	}
+	
+	@Test
+	public void test()
+	{
+		System.out.println("Anand");
+	}
+		
+
+}

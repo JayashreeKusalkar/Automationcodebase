@@ -1,0 +1,12 @@
+package samplepacakage;
+
+import org.testng.annotations.Test;
+
+public class Testing {
+
+	@Test
+	public void test1()
+	{
+		System.out.println("Anand");
+	}
+}

@@ -1,0 +1,51 @@
+package testing;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import configFile.config_File;
+
+public class MouseHoverAndDragandDrop {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+System.setProperty("webdriver.chrome.driver",config_File.driverpath+"chromedriver.exe");
+		
+		ChromeOptions op = new ChromeOptions();
+		op.addArguments("--disable-infobars");
+		op.addArguments("--start-maximized");			
+		WebDriver dr = new ChromeDriver(op);
+		
+		dr.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		dr.get("https://www.flipkart.com/");
+		
+		dr.findElement(By.xpath("//button[@class='_2AkmmA _29YdH8']")).click();
+		
+		Actions act = new Actions(dr);
+		//span[text()='Men']
+		
+		
+		act.moveToElement(dr.findElement(By.xpath("//span[text()='Men']"))).build().perform();
+		
+		WebDriverWait wait =new WebDriverWait(dr,10);
+		
+		wait.until(ExpectedConditions.visibilityOf(dr.findElement(By.xpath("//a[text()='Shirts']"))));
+		
+		dr.findElement(By.xpath("//a[text()='Shirts']")).click();
+		
+		//Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.visibilityOf(dr.findElement(By.xpath("(//div[@class='_3aQU3C'])[1]"))));
+		
+		act.dragAndDropBy(dr.findElement(By.xpath("(//div[@class='_3aQU3C'])[1]")), 50, 0).build().perform();
+	}
+
+}

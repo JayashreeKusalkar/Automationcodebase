@@ -1,0 +1,38 @@
+package testing;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import com.aventstack.extentreports.ExtentReports;
+
+import configFile.config_File;
+
+public class Test1 {
+
+	public static void main(String[] args) throws IOException
+	{
+		System.setProperty("webdriver.chrome.driver",config_File.driverpath+"chromedriver.exe");
+		
+		ChromeOptions op = new ChromeOptions();
+		op.addArguments("--disable-infobars");
+		op.addArguments("--start-maximized");			
+		WebDriver dr = new ChromeDriver(op);
+		
+		dr.get("https://www.google.com/");
+		
+		ExtentReports repo = new ExtentReports();
+		
+		TakesScreenshot scrShot = ((TakesScreenshot) dr);
+		File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+		File DestFile = new File("D://TestingScreenshot//image.jpg");
+		FileUtils.copyFile(SrcFile, DestFile);
+	}
+
+}
